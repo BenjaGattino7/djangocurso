@@ -1,0 +1,24 @@
+{% extends "/home/ingenierira/Escritorio/cursodjango/ProyectoWeb/ProyectowebApp/templates/ProyectowebApp/header.html" %}
+   
+   
+   {% load static %}
+   {% block content %}
+   
+   <title>Contacto</title>
+
+   {% if "valido" in request.GET %}
+   <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Se ha enviado su mensaje correctamente
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+   {% endif %}
+   <div class="contenedorFormulario">
+      <form action="" method="POST" style="text-align: center;">
+         {% csrf_token %}
+         <table style="color: white; margin: 20px auto;width: auto;">{{miformulario.as_table}}</table>
+         <input type="submit" value="Enviar" style="width: 150px;">
+      </form>
+   </div>
+   
+   <!-- <p style="color: white;">{{request.POST}}</p> -->
+   {% endblock %}

@@ -1,0 +1,55 @@
+{% extends "/home/ingenierira/Escritorio/cursodjango/ProyectoWeb/ProyectowebApp/templates/ProyectowebApp/header.html" %}
+
+{% load static %}
+
+{% block content %}
+<head>
+  <title>Nuestro Blog</title>
+</head>
+   {% for post in posts %}
+   <section class="page-section clearfix">
+      <div class="container">
+        <div class="intro" style="text-align: center !important;">
+          <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" style="max-width: 450px; max-height: 450px;" src="{{post.imagen.url}}" alt="">
+          
+          <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4" >
+             
+              <span class="section-heading-lower">{{post.titulo}}</span>
+            </h2>
+            <span class="section-heading-upper">{{post.contenido}}</span>
+            <p style="font-style: italic;">{{post.autor}}</p>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+
+   {% endfor %}
+
+   <section>
+    <div style="width: 75%;margin: auto;text-align: center;color: white;">
+
+      Categorías:
+      {% for post in posts %}
+
+        {% for categoria in post.categorias.all %}
+
+          <a class="linkscategoria" href="{% url 'categoria' categoria.id %}">{{categoria.nombre}}</a> &nbsp; &nbsp;
+        {% endfor %}
+
+      {% endfor %}
+
+    </div>
+   </section>
+
+   <style>
+    .linkscategoria{
+    text-decoration: underline !important;
+    color: white !important; 
+    }
+    .linkscategoria:hover{
+      color: gainsboro !important;
+    }
+   </style>
+{% endblock %}

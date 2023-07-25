@@ -1,0 +1,51 @@
+{% extends "/home/ingenierira/Escritorio/cursodjango/ProyectoWeb/ProyectowebApp/templates/ProyectowebApp/header.html" %}
+   
+   
+   {% load static %}
+   {% block content %}
+   <title>Nuestra Tienda</title>
+<div >
+
+   <div style="float: right ;">
+      <!-- <p style="color: white;">
+         total: $ {{importe_total_carro}}
+
+         
+      </p> -->
+      {% include "carro/widget.html" %}
+   </div>
+
+
+   <div class="row">
+   {% for producto in productos %}
+   <div class="col-md-4" style="text-align: center;">
+      <div class="card" style="width: 90%; height: 90%; text-align: center; margin: 30px auto 20px; ">
+         
+         <img src="{{producto.imagen.url}}" style="height: 100%;" >
+         
+         <div class="card-body">
+            
+            <h4 class="card-tittle" style="text-align: center;">{{producto.nombre}}</h4>
+            
+            <p class="card-text" style="text-align: center;">${{producto.precio}}</p>
+         
+         </div>
+         <div class="card-footer text-center">
+            {% if user.is_authenticated %}
+          
+               <a href="{% url 'carro:agregar' producto.id %}"  class="btn btn-success">Agregar al carrito</a>
+         
+            {% else %}
+               <a href="{% url 'autenticar' %}"  class="btn btn-success">Iniciar sesión para agregar</a>
+
+            {% endif %}
+            </div>
+      </div>
+   </div>
+   <!-- hacer que si el usuario no esta verificado no pueda agregar productos al carrito -->
+
+
+   {% endfor %}
+   </div>   
+</div>
+   {% endblock %}

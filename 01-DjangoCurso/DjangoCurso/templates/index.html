@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>
+            {% block tittle %} {% endblock %}
+        </title>
+    </head>
+
+    <body>
+        {% include "superior/barra.html" %}
+        <h1 style="background-color: gray; color:white; text-align: center;">Curso Django</h1>
+        <h3>Aprendiendo para que sirve</h3>
+
+        {% block content %}
+        
+        {% endblock %}
+        
+        <footer >
+            <p style="background-color: gray; color:white; text-align: center;">Curso Gratuito</p>
+        </footer>
+    </body>
+</html>
